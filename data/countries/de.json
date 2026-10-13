@@ -1,0 +1,76 @@
+{
+ "iso": "DE",
+ "name": "Germany",
+ "schengen": true,
+ "official_portal": "https://videx.diplo.de/",
+ "portal_status": "200",
+ "centre": "TLScontact (verify current UK provider)",
+ "form_type": "harmonised form (paper or centre online form, per country; needs verification)",
+ "journey": [
+  {
+   "step": "Fill in the VIDEX online form, print it and sign it",
+   "url": "https://videx.diplo.de/"
+  },
+  {
+   "step": "Check the German Embassy London visa pages for the checklist",
+   "url": "https://uk.diplo.de/uk-en"
+  },
+  {
+   "step": "Book a TLScontact UK appointment and pay the service fee",
+   "url": null
+  },
+  {
+   "step": "Attend: documents, biometrics, €90 visa fee",
+   "url": null
+  },
+  {
+   "step": "Track and collect your passport",
+   "url": null
+  }
+ ],
+ "documents": {
+  "base": [
+   "Passport (issued <10 yrs, valid 3+ months after return, 2 blank pages)",
+   "UK residence proof (eVisa share code / BRP) valid 3+ months after return",
+   "Completed application form + recent photo",
+   "Travel insurance, €30,000 cover, whole trip",
+   "Return flight booking",
+   "Accommodation for every night",
+   "Last 3 months bank statements"
+  ],
+  "by_uk_status": {
+   "ILR": [
+    "Proof of ILR (eVisa share code)",
+    "Employer letter or payslips"
+   ],
+   "SkilledWorker": [
+    "Employer letter confirming job, salary and approved leave",
+    "Last 3 payslips"
+   ],
+   "Student": [
+    "University enrolment letter + term dates",
+    "Sponsor letter and sponsor bank statements if funded by family"
+   ],
+   "Spouse": [
+    "Marriage certificate",
+    "Partner's passport/ID and, if they fund the trip, their bank statements"
+   ],
+   "other": [
+    "Proof of current UK status valid 3+ months beyond return — check eligibility first"
+   ]
+  },
+  "by_nationality": "see rules.json nationalities[X].notes"
+ },
+ "fees": {
+  "visa_eur": 90,
+  "service_gbp": 30
+ },
+ "processing": "up to 15 days standard, up to 45 (EU Visa Code)",
+ "uk_wait": "2–5 weeks",
+ "sources": [
+  "https://doineedavisa.uk/blog/schengen-visa-appointment-2026"
+ ],
+ "checked": "2026-10-13",
+ "verified": false,
+ "portal_label": "VIDEX (official German online visa form)"
+}

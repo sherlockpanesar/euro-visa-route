@@ -2,7 +2,7 @@
  "meta": {
   "fx_eur_gbp": 0.86,
   "insurance_gbp": 15,
-  "note": "Edit by hand. nationalities[X].overrides[DEST] replaces destination defaults. verified=false shows 'needs verification'. Schengen-visa-exempt passports (e.g. UAE, Ukraine, Serbia, Colombia, Brazil) are intentionally excluded."
+  "note": "Edit by hand. nationalities[X].overrides[DEST] replaces destination defaults. verified=false shows 'needs verification'. Schengen-visa-exempt passports (e.g. UAE, Ukraine, Serbia, Colombia, Brazil) are intentionally excluded. The passport dropdown order follows the order of 'nationalities'."
  },
  "schengen_fee": {
   "eur": 90,
@@ -166,8 +166,8 @@
    "checked": "2026-10-13",
    "verified": true,
    "note": null,
-   "apply_url": "https://visas-de.tlscontact.com/visa/gb",
-   "apply_url_status": "bot-protected (403 to scripts; official domain)",
+   "apply_url": "https://videx.diplo.de/",
+   "apply_url_status": "200",
    "apply_url_checked": "2026-10-13"
   },
   "GR": {
@@ -230,8 +230,8 @@
    "checked": "2026-10-13",
    "verified": true,
    "note": null,
-   "apply_url": "https://visas-it.tlscontact.com/visa/gb",
-   "apply_url_status": "bot-protected (403 to scripts; official domain)",
+   "apply_url": "https://vistoperitalia.esteri.it/",
+   "apply_url_status": "200",
    "apply_url_checked": "2026-10-13"
   },
   "LV": {
@@ -576,24 +576,130 @@
  },
  "nationalities": {
   "IN": {
-   "name": "Indian",
+   "name": "India",
    "schengen_visa": true,
    "notes": [],
    "overrides": {},
    "refusal": {
-    "rate": 15.8,
-    "label": "Indian applicants, all Schengen states, 2025",
-    "source": "https://economictimes.indiatimes.com/nri/visit/one-in-six-indian-schengen-visa-applications-were-rejected-in-2025-these-countries-denied-the-most/articleshow/131403370.cms",
+    "rate": 15.0,
+    "label": "Schengen applications filed in India, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
    }
   },
-  "TH": {
-   "name": "Thai",
+  "PK": {
+   "name": "Pakistan",
+   "schengen_visa": true,
+   "notes": [
+    {
+     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
+     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
+     "checked": "2026-10-13"
+    }
+   ],
+   "overrides": {},
+   "refusal": {
+    "rate": 47.5,
+    "label": "Schengen applications filed in Pakistan, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
+   }
+  },
+  "NG": {
+   "name": "Nigeria",
+   "schengen_visa": true,
+   "notes": [
+    {
+     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
+     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
+     "checked": "2026-10-13"
+    }
+   ],
+   "overrides": {},
+   "refusal": {
+    "rate": 45.9,
+    "label": "Schengen applications filed in Nigeria, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
+   }
+  },
+  "CN": {
+   "name": "China",
+   "schengen_visa": true,
+   "notes": [],
+   "overrides": {
+    "RS": {
+     "permit_rule": "China passport: visa-free on its own, no UK permit needed.",
+     "permit_ok": true,
+     "any_status": true,
+     "cost_gbp": 0,
+     "source": "https://visaunlocks.com/unlocks/uk-visa/",
+     "checked": "2026-10-13",
+     "verified": false
+    },
+    "BA": {
+     "permit_rule": "China passport: visa-free on its own, no UK permit needed.",
+     "permit_ok": true,
+     "any_status": true,
+     "cost_gbp": 0,
+     "source": "https://www.mvp.gov.ba/",
+     "checked": "2026-10-13",
+     "verified": false
+    },
+    "AL": {
+     "permit_rule": "China passport: visa-free on its own, no UK permit needed.",
+     "permit_ok": true,
+     "any_status": true,
+     "cost_gbp": 0,
+     "source": "https://visaunlocks.com/unlocks/uk-visa/",
+     "checked": "2026-10-13",
+     "verified": false
+    }
+   },
+   "refusal": {
+    "rate": 4.6,
+    "label": "Schengen applications filed in China, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
+   }
+  },
+  "BD": {
+   "name": "Bangladesh",
+   "schengen_visa": true,
+   "notes": [
+    {
+     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
+     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
+     "checked": "2026-10-13"
+    }
+   ],
+   "overrides": {},
+   "refusal": {
+    "rate": 54.9,
+    "label": "Schengen applications filed in Bangladesh, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
+   }
+  },
+  "PH": {
+   "name": "Philippines",
+   "schengen_visa": true,
+   "notes": [],
+   "overrides": {},
+   "refusal": {
+    "rate": 6.1,
+    "label": "Schengen applications filed in Philippines, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
+   }
+  },
+  "ZA": {
+   "name": "South Africa",
    "schengen_visa": true,
    "notes": [],
    "overrides": {
     "TR": {
-     "permit_rule": "Thai passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "South Africa passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -602,7 +708,7 @@
      "verified": false
     },
     "GE": {
-     "permit_rule": "Thai passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "South Africa passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -612,68 +718,14 @@
     }
    },
    "refusal": {
-    "rate": 6.2,
-    "label": "Applications filed in Thailand, 2025 (proxy, not nationality)",
-    "source": "https://www.packset.travel/schengen/statistics/",
+    "rate": 5.7,
+    "label": "Schengen applications filed in South Africa, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
    }
   },
-  "PK": {
-   "name": "Pakistani",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
-  "BD": {
-   "name": "Bangladeshi",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
-  "LK": {
-   "name": "Sri Lankan",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
-  "NP": {
-   "name": "Nepalese",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "NG": {
-   "name": "Nigerian",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
   "GH": {
-   "name": "Ghanaian",
+   "name": "Ghana",
    "schengen_visa": true,
    "notes": [
     {
@@ -682,103 +734,16 @@
      "checked": "2026-10-13"
     }
    ],
-   "overrides": {}
-  },
-  "KE": {
-   "name": "Kenyan",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "ZA": {
-   "name": "South African",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "TR": {
-     "permit_rule": "South African passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "GE": {
-     "permit_rule": "South African passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "EG": {
-   "name": "Egyptian",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "MA": {
-   "name": "Moroccan",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "TR": {
-     "permit_rule": "Moroccan passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "RS": {
-     "permit_rule": "Moroccan passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "DZ": {
-   "name": "Algerian",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "TN": {
-   "name": "Tunisian",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "TR": {
-     "permit_rule": "Tunisian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "RS": {
-     "permit_rule": "Tunisian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
+   "overrides": {},
+   "refusal": {
+    "rate": 45.5,
+    "label": "Schengen applications filed in Ghana, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
    }
   },
   "TR": {
-   "name": "Turkish",
+   "name": "Türkiye",
    "schengen_visa": true,
    "notes": [],
    "overrides": {
@@ -789,7 +754,7 @@
      "checked": "2026-10-13"
     },
     "AL": {
-     "permit_rule": "Turkish passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Türkiye passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -798,7 +763,7 @@
      "verified": false
     },
     "ME": {
-     "permit_rule": "Turkish passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Türkiye passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -807,7 +772,7 @@
      "verified": false
     },
     "RS": {
-     "permit_rule": "Turkish passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Türkiye passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -816,7 +781,7 @@
      "verified": false
     },
     "MK": {
-     "permit_rule": "Turkish passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Türkiye passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -825,7 +790,7 @@
      "verified": false
     },
     "BA": {
-     "permit_rule": "Turkish passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Türkiye passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -834,440 +799,47 @@
      "verified": false
     },
     "GE": {
-     "permit_rule": "Turkish passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Türkiye passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
      "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "PH": {
-   "name": "Filipino",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "ID": {
-   "name": "Indonesian",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "RS": {
-     "permit_rule": "Indonesian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "VN": {
-   "name": "Vietnamese",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "CN": {
-   "name": "Chinese",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "RS": {
-     "permit_rule": "Chinese passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "BA": {
-     "permit_rule": "Chinese passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.mvp.gov.ba/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "AL": {
-     "permit_rule": "Chinese passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "IR": {
-   "name": "Iranian",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {
-    "TR": {
-     "permit_rule": "Iranian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "GE": {
-     "permit_rule": "Iranian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "RS": {
-     "permit_rule": "Iranian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "IQ": {
-   "name": "Iraqi",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
-  "AF": {
-   "name": "Afghan",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
-  "ZW": {
-   "name": "Zimbabwean",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "CM": {
-   "name": "Cameroonian",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {}
-  },
-  "ET": {
-   "name": "Ethiopian",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
-    },
-    {
-     "text": "EU restrictive visa measures on Ethiopia were lifted in May 2026, so standard rules apply.",
-     "source": "https://www.consilium.europa.eu/en/press/press-releases/2026/05/19/council-lifts-restrictive-visa-measures-concerning-ethiopia/",
-     "checked": "2026-10-13"
-    }
-   ],
-   "overrides": {}
-  },
-  "JO": {
-   "name": "Jordanian",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "TR": {
-     "permit_rule": "Jordanian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "GE": {
-     "permit_rule": "Jordanian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "LB": {
-   "name": "Lebanese",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "GE": {
-     "permit_rule": "Lebanese passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "SA": {
-   "name": "Saudi",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "GE": {
-     "permit_rule": "Saudi passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "AL": {
-     "permit_rule": "Saudi passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "RU": {
-   "name": "Russian",
-   "schengen_visa": true,
-   "notes": [
-    {
-     "text": "EU visa facilitation for Russia is suspended (full fee, stricter checks). Finland, the Baltic states, Poland and Czechia restrict tourist visas for Russians.",
-     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   ],
-   "overrides": {
-    "RS": {
-     "permit_rule": "Russian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "ME": {
-     "permit_rule": "Russian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "BA": {
-     "permit_rule": "Russian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.mvp.gov.ba/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "GE": {
-     "permit_rule": "Russian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "TR": {
-     "permit_rule": "Russian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "AL": {
-     "permit_rule": "Russian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
      "checked": "2026-10-13",
      "verified": false
     }
    },
-   "restricted_dest": [
-    "FI",
-    "EE",
-    "LV",
-    "LT",
-    "PL",
-    "CZ"
-   ]
+   "refusal": {
+    "rate": 14.5,
+    "label": "Schengen applications filed in Türkiye, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
+   }
   },
-  "BY": {
-   "name": "Belarusian",
+  "LK": {
+   "name": "Sri Lanka",
    "schengen_visa": true,
    "notes": [
     {
-     "text": "EU visa facilitation for Belarus is partly suspended; some neighbouring states apply extra restrictions.",
-     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy_en",
-     "checked": "2026-10-13",
-     "verified": false
+     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
+     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
+     "checked": "2026-10-13"
     }
    ],
-   "overrides": {
-    "RS": {
-     "permit_rule": "Belarusian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "ME": {
-     "permit_rule": "Belarusian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "BA": {
-     "permit_rule": "Belarusian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.mvp.gov.ba/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "GE": {
-     "permit_rule": "Belarusian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "TR": {
-     "permit_rule": "Belarusian passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
+   "overrides": {},
+   "refusal": {
+    "rate": "29–35",
+    "label": "Schengen applications filed in Sri Lanka, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
    }
   },
-  "UZ": {
-   "name": "Uzbek",
+  "TH": {
+   "name": "Thailand",
    "schengen_visa": true,
    "notes": [],
    "overrides": {
-    "GE": {
-     "permit_rule": "Uzbek passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
     "TR": {
-     "permit_rule": "Uzbek passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.evisa.gov.tr/en/",
-     "checked": "2026-10-13",
-     "verified": false
-    }
-   }
-  },
-  "KZ": {
-   "name": "Kazakh",
-   "schengen_visa": true,
-   "notes": [],
-   "overrides": {
-    "RS": {
-     "permit_rule": "Kazakh passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "ME": {
-     "permit_rule": "Kazakh passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "BA": {
-     "permit_rule": "Kazakh passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.mvp.gov.ba/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "GE": {
-     "permit_rule": "Kazakh passport: visa-free on its own, no UK permit needed.",
-     "permit_ok": true,
-     "any_status": true,
-     "cost_gbp": 0,
-     "source": "https://www.geoconsul.gov.ge/",
-     "checked": "2026-10-13",
-     "verified": false
-    },
-    "TR": {
-     "permit_rule": "Kazakh passport: visa-free on its own, no UK permit needed.",
+     "permit_rule": "Thailand passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
@@ -1275,15 +847,21 @@
      "checked": "2026-10-13",
      "verified": false
     },
-    "AL": {
-     "permit_rule": "Kazakh passport: visa-free on its own, no UK permit needed.",
+    "GE": {
+     "permit_rule": "Thailand passport: visa-free on its own, no UK permit needed.",
      "permit_ok": true,
      "any_status": true,
      "cost_gbp": 0,
-     "source": "https://visaunlocks.com/unlocks/uk-visa/",
+     "source": "https://www.geoconsul.gov.ge/",
      "checked": "2026-10-13",
      "verified": false
     }
+   },
+   "refusal": {
+    "rate": 6.2,
+    "label": "Schengen applications filed in Thailand, 2024 (by country of application, not nationality)",
+    "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
+    "checked": "2026-10-13"
    }
   }
  },

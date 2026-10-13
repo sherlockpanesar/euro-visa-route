@@ -1,0 +1,76 @@
+{
+ "iso": "FR",
+ "name": "France",
+ "schengen": true,
+ "official_portal": "https://france-visas.gouv.fr/en/web/france-visas/",
+ "portal_status": "bot-protected (403 to scripts; official .gouv.fr)",
+ "centre": "TLScontact",
+ "form_type": "online (France-Visas)",
+ "journey": [
+  {
+   "step": "Create a France-Visas account and fill in the online form",
+   "url": "https://france-visas.gouv.fr/en/web/france-visas/"
+  },
+  {
+   "step": "Print the form and receipt; sign it",
+   "url": null
+  },
+  {
+   "step": "Book a TLScontact UK appointment (London, Manchester or Edinburgh) and pay the service fee",
+   "url": "https://france-visas.gouv.fr/en/royaume-uni"
+  },
+  {
+   "step": "Attend TLS: documents, biometrics, €90 visa fee",
+   "url": null
+  },
+  {
+   "step": "Track and collect your passport",
+   "url": null
+  }
+ ],
+ "documents": {
+  "base": [
+   "Passport (issued <10 yrs, valid 3+ months after return, 2 blank pages)",
+   "UK residence proof (eVisa share code / BRP) valid 3+ months after return",
+   "Completed application form + recent photo",
+   "Travel insurance, €30,000 cover, whole trip",
+   "Return flight booking",
+   "Accommodation for every night",
+   "Last 3 months bank statements"
+  ],
+  "by_uk_status": {
+   "ILR": [
+    "Proof of ILR (eVisa share code)",
+    "Employer letter or payslips"
+   ],
+   "SkilledWorker": [
+    "Employer letter confirming job, salary and approved leave",
+    "Last 3 payslips"
+   ],
+   "Student": [
+    "University enrolment letter + term dates",
+    "Sponsor letter and sponsor bank statements if funded by family"
+   ],
+   "Spouse": [
+    "Marriage certificate",
+    "Partner's passport/ID and, if they fund the trip, their bank statements"
+   ],
+   "other": [
+    "Proof of current UK status valid 3+ months beyond return — check eligibility first"
+   ]
+  },
+  "by_nationality": "see rules.json nationalities[X].notes"
+ },
+ "fees": {
+  "visa_eur": 90,
+  "service_gbp": 40
+ },
+ "processing": "up to 15 days standard, up to 45 (EU Visa Code)",
+ "uk_wait": "3–6 weeks",
+ "sources": [
+  "https://france-visas.gouv.fr/en/royaume-uni"
+ ],
+ "checked": "2026-10-13",
+ "verified": false,
+ "portal_label": "France-Visas (official)"
+}
