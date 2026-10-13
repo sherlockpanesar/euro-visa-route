@@ -1,0 +1,36 @@
+{
+  "meta": {"fx_eur_gbp": 0.86, "insurance_gbp": 15, "checked_default": "2026-10-13",
+    "note": "Edit by hand. Every rule needs source + checked date. verified=false shows a 'needs verification' badge."},
+  "schengen_fee": {"eur": 90, "source": "https://findmyvisa.co.uk/schengen/fees-explained", "checked": "2026-10-13"},
+  "refusal_source": {"url": "https://economictimes.indiatimes.com/nri/visit/one-in-six-indian-schengen-visa-applications-were-rejected-in-2025-these-countries-denied-the-most/articleshow/131403370.cms", "checked": "2026-10-13", "note": "2025 EC data, Indian applicants worldwide; no Thai nationality data (Thailand-filed avg 6.2%)"},
+  "wait_source": {"url": "https://doineedavisa.uk/blog/schengen-visa-appointment-2026", "checked": "2026-10-13"},
+  "schengen": {
+    "FR": {"name":"France","centre":"TLScontact","service_gbp":40,"wait":"3–6 weeks","wait_weeks":4.5,"refusal_in":15.7,"source":"https://france-visas.gouv.fr/en/royaume-uni","checked":"2026-10-13"},
+    "DE": {"name":"Germany","centre":"TLScontact","service_gbp":30,"wait":"2–5 weeks","wait_weeks":3.5,"refusal_in":10.5,"source":"https://doineedavisa.uk/blog/schengen-visa-appointment-2026","checked":"2026-10-13"},
+    "IT": {"name":"Italy","centre":"TLScontact","service_gbp":35,"wait":"4–8 weeks","wait_weeks":6,"refusal_in":12.7,"source":"https://doineedavisa.uk/blog/schengen-visa-appointment-2026","checked":"2026-10-13"},
+    "GR": {"name":"Greece","centre":"VFS Global","service_gbp":30,"wait":"2–4 weeks","wait_weeks":3,"refusal_in":33.0,"source":"https://doineedavisa.uk/blog/schengen-visa-appointment-2026","checked":"2026-10-13"},
+    "NL": {"name":"Netherlands","centre":"VFS Global","service_gbp":16,"wait":"1–3 weeks + up to 45 days processing","wait_weeks":4,"refusal_in":20.6,"source":"https://uktoschengen.co.uk/netherlands-visa-from-uk","checked":"2026-10-13"},
+    "SI": {"name":"Slovenia","centre":"VFS Global","service_gbp":30,"wait":"limited UK slots (unverified)","wait_weeks":4,"refusal_in":46.1,"source":"https://economictimes.indiatimes.com/nri/visit/one-in-six-indian-schengen-visa-applications-were-rejected-in-2025-these-countries-denied-the-most/articleshow/131403370.cms","checked":"2026-10-13","verified":false},
+    "ES": {"name":"Spain","centre":"BLS International","service_gbp":30,"wait":"2–4 weeks","wait_weeks":3,"refusal_in":null,"source":"https://doineedavisa.uk/blog/schengen-visa-appointment-2026","checked":"2026-10-13"},
+    "PT": {"name":"Portugal","centre":"VFS Global","service_gbp":30,"wait":"1–2 weeks","wait_weeks":1.5,"refusal_in":null,"source":"https://doineedavisa.uk/blog/schengen-visa-appointment-2026","checked":"2026-10-13"}
+  },
+  "non_schengen": {
+    "AL": {"name":"Albania","rule":"Visa-free up to 90 days with a valid UK residence permit","needs_permit":true,"max_days":90,"source":"https://visaunlocks.com/unlocks/uk-visa/","checked":"2026-10-13"},
+    "ME": {"name":"Montenegro","rule":"Visa-free up to 30 days with a valid UK residence permit or visa. Rules change 1 Nov 2026.","needs_permit":true,"max_days":30,"source":"https://visaunlocks.com/unlocks/uk-visa/","checked":"2026-10-13","warn_after":"2026-11-01"},
+    "TR": {"name":"Türkiye","rule":"Indian: conditional e-Visa with UK residence permit (~£40). Thai: visa-free 30 days.","needs_permit":true,"max_days":30,"cost_gbp":{"IN":40,"TH":0},"source":"https://www.evisa.gov.tr/en/","checked":"2026-10-13","verified":false},
+    "GE": {"name":"Georgia","rule":"Visa-free with valid UK residence permit (check current list)","needs_permit":true,"max_days":90,"source":"https://www.geoconsul.gov.ge/","checked":"2026-10-13","verified":false},
+    "BA": {"name":"Bosnia & Herzegovina","rule":"Visa-free with valid multi-entry UK visa/permit (check)","needs_permit":true,"max_days":30,"source":"https://www.mvp.gov.ba/","checked":"2026-10-13","verified":false},
+    "IE": {"name":"Ireland","rule":"Irish visa required; UK residence does NOT exempt. €60 single entry + VFS, 4–8 weeks.","visa_required":true,"cost_gbp":75,"wait":"4–8 weeks","source":"https://ilrtracker.com/guides/ilr-visa-free-countries","checked":"2026-10-13"},
+    "CY": {"name":"Cyprus","rule":"Cyprus national visa required unless you hold a valid multi-entry Schengen visa; UK permit does not count.","visa_required":true,"cost_gbp":null,"wait":"varies","source":"https://www.gov.cy/mfa/en/documents/categories-of-persons-and-countries-whose-nationals-do-not-require-a-visa/","checked":"2026-10-13"}
+  },
+  "permit_statuses": ["ILR","SkilledWorker","Student","Spouse"],
+  "checklist": {
+    "base": ["Passport (issued <10 yrs, valid 3+ months after return, 2 blank pages)","UK residence proof (eVisa share code / BRP) valid 3+ months after return","Completed application form + recent photo","Travel insurance, €30,000 cover, whole trip","Return flight booking","Accommodation for every night","Last 3 months bank statements"],
+    "ILR": ["Proof of ILR (eVisa share code)","Employer letter or payslips"],
+    "SkilledWorker": ["Employer letter confirming job, salary and approved leave","Last 3 payslips"],
+    "Student": ["University enrolment letter + term dates","Sponsor letter and sponsor bank statements if funded by family"],
+    "Spouse": ["Marriage certificate","Partner's passport/ID and, if they fund the trip, their bank statements"],
+    "other": ["Proof of current UK status valid 3+ months beyond return — check eligibility first"],
+    "refusal_causes": ["Insufficient or unexplained funds (sudden large deposits)","Purpose/itinerary unclear or inconsistent dates across bookings","Doubt you will return — weak proof of UK status, job or studies"]
+  }
+}
