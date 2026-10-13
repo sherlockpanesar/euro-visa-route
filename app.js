@@ -1,58 +1,74 @@
 let R;const $=s=>document.querySelector(s),gbp=n=>'£'+Math.round(n);
-const today=new Date('2026-10-13');
+const today=new Date('2026-10-13'),FS='https://formsubmit.co/ajax/7b6dde70131e9207583b30d953377e74';
+const nameToCode=n=>Object.entries(R.nationalities).find(([c,v])=>v.name.toLowerCase()===n.trim().toLowerCase())?.[0];
 fetch('data/rules.json').then(r=>r.json()).then(j=>{R=j;
-  const all={...R.schengen,...R.non_schengen};
-  $('#dest').innerHTML=Object.entries(all).map(([c,v])=>`<label><input type="checkbox" value="${c}">${v.name}</label>`).join('');
+  $('#plist').innerHTML=Object.values(R.nationalities).map(v=>`<option value="${v.name}">`).sort().join('');
+  const opt=(o)=>Object.entries(o).sort((a,b)=>a[1].name.localeCompare(b[1].name)).map(([c,v])=>`<option value="${c}">${v.name}</option>`).join('');
+  const g=`<optgroup label="Schengen area">${opt(R.schengen)}</optgroup><optgroup label="Outside Schengen">${opt(R.non_schengen)}</optgroup>`;
+  $('#d1').innerHTML=g;$('#d2').innerHTML='<option value="">None</option>'+g;
   const q=new URLSearchParams(location.search);
-  if(q.get('p')){const f=$('#f');f.p.value=q.get('p');f.s.value=q.get('s');f.from.value=q.get('from');f.to.value=q.get('to');
-    q.get('d').split(',').forEach(c=>{const i=$(`#dest input[value=${c}]`);if(i)i.checked=true});window._order=q.get('d').split(',');run();}
+  if(q.get('p')){const f=$('#f');const n=R.nationalities[q.get('p')];if(n)$('#pp').value=n.name;f.s.value=q.get('s')||'ILR';f.from.value=q.get('from');f.to.value=q.get('to');
+    const d=(q.get('d')||'').split(',');$('#d1').value=d[0];$('#d2').value=d[1]||'';run();}
 });
-const order=[];document.addEventListener('change',e=>{if(e.target.closest('#dest')){const v=e.target.value,i=order.indexOf(v);if(i>=0)order.splice(i,1);if(e.target.checked)order.push(v)}});
 $('#f').onsubmit=e=>{e.preventDefault();run()};
-const src=r=>`<small class="src">Source: <a href="${r.source||r.url}" target="_blank">${new URL(r.source||r.url).hostname}</a> · checked ${r.checked}${r.verified===false?' · <span class="badge nv">needs verification</span>':''}</small>`;
-function badge(p,s){if(p==='TH')return `<span class="badge lo">Refusal: likely low</span><small class="src">No Thai-nationality data; Thailand-filed avg 6.2% (2025).</small>`;
-  const r=s.refusal_in;if(r==null)return `<span class="badge">Refusal: no data</span>`;
-  return `<span class="badge ${r>=25?'hi':r>=15?'md':'lo'}">Refusal for Indian applicants: ${r}%</span>`+src(R.refusal_source);}
-function schengenCost(s){return R.schengen_fee.eur*R.meta.fx_eur_gbp+s.service_gbp+R.meta.insurance_gbp}
+const nv=r=>r.verified===false?' · <span class="badge nv">needs verification</span>':'';
+const host=u=>{try{return new URL(u).hostname}catch{return u}};
+const src=r=>`<small class="src">Source: <a href="${r.source||r.url}" target="_blank" rel="noopener">${host(r.source||r.url)}</a> · checked ${r.checked}${nv(r)}</small>`;
+const btn=(u,t)=>u?`<a class="btn2" href="${u}" target="_blank" rel="noopener">${t} ↗</a>`:'';
+function badge(p,s){const n=R.nationalities[p];
+  if(p==='IN'&&s.refusal_IN!=null){const r=s.refusal_IN;return `<span class="badge ${r>=25?'hi':r>=15?'md':'lo'}">Refusal for Indian applicants (${s.name}): ${r}%</span>`+src({source:s.refusal_IN_source,checked:s.checked});}
+  if(n.refusal)return `<span class="badge ${n.refusal.rate>=25?'hi':n.refusal.rate>=15?'md':'lo'}">Refusal: ${n.refusal.rate}%</span><small class="src">${n.refusal.label}</small>`+src(n.refusal);
+  return `<span class="badge">Refusal: no data</span><small class="src">The EU publishes no nationality-level data for this passport.</small>`;}
+const cost=s=>R.schengen_fee.eur*R.meta.fx_eur_gbp+s.service_gbp+R.meta.insurance_gbp;
+const ruleFor=(p,c)=>{const o=R.nationalities[p].overrides?.[c];return o?{...R.non_schengen[c],...o}:R.non_schengen[c]};
+function nonEval(p,c,permit,days){const r=ruleFor(p,c);
+  if(r.visa_required)return {r,ok:false,visa:true};
+  if((r.any_status||(permit&&r.permit_ok))&&days<=r.max_days)return {r,ok:true};return {r,ok:false};}
 function run(){
-  const f=$('#f'),p=f.p.value,st=f.s.value,from=new Date(f.from.value),to=new Date(f.to.value);
-  const sel=(window._order||order).filter(c=>$(`#dest input[value=${c}]`)?.checked);
-  if(!sel.length||isNaN(from)||isNaN(to)||to<from){$('#out').innerHTML='<div class="card">Pick at least one destination and valid dates.</div>';return}
-  const days=Math.round((to-from)/864e5)+1,lead=(from-today)/864e5/7,permit=R.permit_statuses.includes(st);
-  const sch=sel.filter(c=>R.schengen[c]),non=sel.filter(c=>R.non_schengen[c]);let h='',warns=[],alts=[],detail='';
-  if(sch.length){const c=sch[0],s=R.schengen[c],cost=schengenCost(s);
-    h=`Apply to ${s.name}. About ${gbp(cost)}. ${s.wait}.`;
-    detail=`<p>You need a Schengen visa (type C). It covers ${sch.map(x=>R.schengen[x].name).join(', ')}. Apply to <b>${s.name}</b> via ${s.centre}${sch.length>1?' because it is your main destination (most nights). If nights are equal, apply to the country you enter first.':'.'}</p>
-    <p class="k">Cost: €90 visa fee (${gbp(90*R.meta.fx_eur_gbp)}) + ${s.centre} fee ~${gbp(s.service_gbp)} + insurance ~${gbp(R.meta.insurance_gbp)}</p>${badge(p,s)}${src(R.schengen_fee)}${src(s)}`;
+  const f=$('#f'),p=nameToCode($('#pp').value),st=f.s.value,from=new Date(f.from.value),to=new Date(f.to.value);
+  if(!p){$('#out').innerHTML='<div class="card err">Pick a passport from the list.</div>';return}
+  const sel=[$('#d1').value,$('#d2').value].filter((v,i,a)=>v&&a.indexOf(v)===i);
+  if(!sel.length||isNaN(from)||isNaN(to)||to<from){$('#out').innerHTML='<div class="card err">Pick a destination and valid dates.</div>';return}
+  const N=R.nationalities[p],days=Math.round((to-from)/864e5)+1,lead=(from-today)/864e5/7,permit=R.permit_statuses.includes(st);
+  const sch=sel.filter(c=>R.schengen[c]),non=sel.filter(c=>R.non_schengen[c]);let h='',warns=[],alts=[],detail='',route='';
+  if(sch.length){const c=sch[0],s=R.schengen[c],t=cost(s);
+    h=`Apply to ${s.name}. About ${gbp(t)}. ${s.wait==='no data'?'Wait: no data':s.wait}.`;route=h;
+    detail=`<p>You need a Schengen visa (type C) for ${sch.map(x=>R.schengen[x].name).join(' and ')}. Apply to <b>${s.name}</b> via ${s.centre}${sch.length>1?', your main destination (most nights; if nights are equal, the country you enter first).':'.'}</p>
+    <p class="k">Cost: €90 visa fee (~${gbp(90*R.meta.fx_eur_gbp)} at ~${R.meta.fx_eur_gbp} €/£) + ${s.centre} fee ~${gbp(s.service_gbp)} + insurance ~${gbp(R.meta.insurance_gbp)}${s.note?' · '+s.note:''}</p>${badge(p,s)}${src(R.schengen_fee)}${src(s)}
+    ${btn(s.apply_url,'Start application')}`;
+    if(N.restricted_dest?.includes(c))warns.push(`${s.name} restricts visas for ${N.name} citizens. Check the official page before applying.`);
     if(days>90)warns.push('Trips over 90 days cannot use a short-stay visa.');
-    if(lead<s.wait_weeks)warns.push(`Your trip starts in about ${Math.max(0,Math.round(lead))} weeks, but the typical wait is ${s.wait}. Book an appointment now or move your dates.`);
+    if(s.wait_weeks&&lead<s.wait_weeks)warns.push(`Your trip starts in about ${Math.max(0,Math.round(lead))} weeks, but the typical wait is ${s.wait}. Book now or move your dates.`);
     if(lead>26)warns.push('You can only apply up to 6 months before travel.');
-    if(!permit)warns.push('Check that your UK permission is valid at least 3 months beyond your return; centres may refuse to accept the application otherwise.');
-  }
-  non.forEach(c=>{const n=R.non_schengen[c];
-    if(n.visa_required){const covered=c==='CY'&&sch.length;detail+=`<div class="alt"><b>${n.name}:</b> ${covered?'Covered if your Schengen visa is double or multiple entry (ask for it).':n.rule}${src(n)}</div>`;
-      if(!sch.length)h=h||`Apply for a ${n.name} visa. ${n.cost_gbp?'About '+gbp(n.cost_gbp)+'. ':''}${n.wait}.`;}
-    else if(permit&&days<=n.max_days){const cost=n.cost_gbp?n.cost_gbp[p]:0;detail+=`<div class="alt"><b>${n.name}:</b> ${n.rule}${src(n)}</div>`;h=h||`No visa needed for ${n.name}. ${cost?'e-Visa about '+gbp(cost):'£0 in visa fees'}. Go when ready.`;}
-    else{detail+=`<div class="alt"><b>${n.name}:</b> ${permit?`Visa-free only up to ${n.max_days} days; your trip is ${days}.`:'Your UK status may not qualify. You probably need a national visa; check the source.'}${src(n)}</div>`;h=h||`Check ${n.name}: you may need a national visa.`;}
-    if(n.warn_after&&to>=new Date(n.warn_after))warns.push(`${n.name}'s rules change on ${n.warn_after}. Recheck before you travel.`);
-  });
-  // alternatives
-  if(permit)Object.entries(R.non_schengen).filter(([c,n])=>!sel.includes(c)&&!n.visa_required&&days<=n.max_days)
-    .sort((a,b)=>((a[1].cost_gbp||{})[p]||0)-((b[1].cost_gbp||{})[p]||0)||(a[1].verified===false)-(b[1].verified===false)).slice(0,2)
-    .forEach(([c,n])=>alts.push(`<b>${n.name}</b>: no Schengen visa needed. ${n.rule}${src(n)}`));
-  if(alts.length<2&&sch.length)Object.entries(R.schengen).filter(([c])=>!sel.includes(c)).sort((a,b)=>(a[1].wait_weeks-b[1].wait_weeks))
-    .slice(0,2-alts.length).forEach(([c,s])=>alts.push(`<b>${s.name}</b>, only if it genuinely becomes your main destination: ${s.wait}, about ${gbp(schengenCost(s))}.${src(s)}`));
-  const ck=[...R.checklist.base,...R.checklist[st]];
-  $('#out').innerHTML=`<div class="card"><div class="big">${h}</div><p class="k">${days}-day trip · ${p==='IN'?'Indian':'Thai'} passport · ${f.s.selectedOptions[0].text}</p>${detail}
-  ${warns.map(w=>`<div class="warn">⚠️ ${w}</div>`).join('')}</div>
+    if(!permit)warns.push('Check that your UK permission is valid at least 3 months beyond your return.');}
+  non.forEach(c=>{const {r,ok,visa}=nonEval(p,c,permit,days);
+    if(visa){const cov=c==='CY'&&sch.length&&!R.nationalities[p].overrides?.CY;detail+=`<div class="alt"><b>${r.name}:</b> ${cov?'Covered if your Schengen visa is double or multiple entry (ask for it).':r.permit_rule}${src(r)}${cov?'':btn(r.apply_url,'Start application')}</div>`;
+      if(!h){h=`Apply for a ${r.name} visa. ${r.cost_gbp?'About ~'+gbp(r.cost_gbp)+'. ':''}${r.wait}.`;route=h}}
+    else if(ok){const k=r.cost_gbp||0;detail+=`<div class="alt"><b>${r.name}:</b> ${r.permit_rule}${src(r)}${btn(r.entry_url,'Official entry rules')}</div>`;
+      if(!h){h=`No visa needed for ${r.name}. ${k?'e-Visa ~'+gbp(k):'£0 in visa fees'}. Go when ready.`;route=h}}
+    else{detail+=`<div class="alt"><b>${r.name}:</b> ${!permit&&r.permit_ok?'Your UK status may not qualify. ':''}${r.permit_rule}${days>r.max_days?` (max ${r.max_days} days; your trip is ${days})`:''}${src(r)}${btn(r.entry_url,'Official entry rules')}</div>`;
+      if(!h){h=`Check ${r.name}: you probably need a national visa.`;route=h}}
+    if(r.warn_after&&to>=new Date(r.warn_after))warns.push(`${r.name} changes its rules on ${r.warn_after}. Recheck before you travel.`);});
+  Object.keys(R.non_schengen).filter(c=>!sel.includes(c)).map(c=>({c,...nonEval(p,c,permit,days)})).filter(x=>x.ok)
+    .sort((a,b)=>(a.r.cost_gbp||0)-(b.r.cost_gbp||0)||(a.r.verified===false)-(b.r.verified===false)).slice(0,2)
+    .forEach(({r})=>alts.push(`<b>${r.name}</b>: no Schengen visa needed. ${r.permit_rule}${src(r)}${btn(r.entry_url,'Official entry rules')}`));
+  if(alts.length<2&&sch.length)Object.entries(R.schengen).filter(([c])=>!sel.includes(c)&&R.schengen[c].wait_weeks).sort((a,b)=>a[1].wait_weeks-b[1].wait_weeks)
+    .slice(0,2-alts.length).forEach(([c,s])=>alts.push(`<b>${s.name}</b>, only if it genuinely becomes your main destination: ${s.wait}, about ~${gbp(cost(s))}.${src(s)}${btn(s.apply_url,'Start application')}`));
+  const notes=N.notes.map(n=>`<div class="warn">ℹ️ ${n.text}${src(n)}</div>`).join('');
+  const ck=[...R.checklist.base,...R.checklist[st]];const needVisa=sch.length||non.some(c=>nonEval(p,c,permit,days).visa);
+  const summary=`${N.name} | ${st} | ${sel.join('+')} | ${f.from.value}→${f.to.value} | ${route}`;
+  $('#out').innerHTML=`<div class="card"><div class="big">${h}</div><p class="k">${days}-day trip · ${N.name} passport · ${f.s.selectedOptions[0].text}</p>${detail}
+  ${warns.map(w=>`<div class="warn">⚠️ ${w}</div>`).join('')}${sch.length?notes:''}</div>
   ${alts.length?`<div class="card"><b>2 alternatives</b>${alts.map(a=>`<div class="alt">${a}</div>`).join('')}</div>`:''}
-  ${sch.length||sel.some(c=>R.non_schengen[c].visa_required)?`<div class="card"><b>Your document checklist</b><ul>${ck.map(x=>`<li>${x}</li>`).join('')}</ul>
+  ${needVisa?`<div class="card"><b>Your document checklist</b><ul>${ck.map(x=>`<li>${x}</li>`).join('')}</ul>
   <b class="flag">Top 3 refusal causes: check these twice</b><ul>${R.checklist.refusal_causes.map(x=>`<li class="flag">${x}</li>`).join('')}</ul></div>
-  <div class="card"><b>Want a second pair of eyes?</b><p class="k">We will check your pack against this list before your appointment. Join the waitlist; no payment is taken.</p>
-  <input type="email" id="em" placeholder="you@example.com"><button id="pay">Get my pack checked (£39)</button><p id="wl" class="k"></p></div>`:''}`;
-  // TODO: wire a form service (e.g. Formspree) - emails are currently only stored in this browser's localStorage, NOT collected.
-  const b=$('#pay');if(b)b.onclick=()=>{const e=$('#em').value.trim();
-    if(e.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e)){$('#wl').textContent='Please enter a valid email.';return}
-    const l=JSON.parse(localStorage.getItem('waitlist')||'[]');l.push({email:e,profile:{p,st,sel},at:new Date().toISOString()});localStorage.setItem('waitlist',JSON.stringify(l));
-    $('#wl').textContent="Thanks, you're on the list.";};
+  <div class="card"><b>Want a second pair of eyes?</b><p class="k">We'll check your pack against this list before your appointment.</p>
+  <form id="wlf"><input type="email" id="em" placeholder="you@example.com" required maxlength="254"><input type="text" id="hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button>Get my pack checked (£39)</button></form><p class="k">We'll email you when pack checks launch. No spam; unsubscribe any time. <a href="privacy.html">Privacy note</a></p><p id="wl" role="status"></p></div>`:''}`;
+  const wf=$('#wlf');if(wf)wf.onsubmit=e=>{e.preventDefault();const em=$('#em').value.trim(),o=$('#wl');
+    if(em.length>254||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){o.className='err';o.textContent='Please enter a valid email.';return}
+    o.className='k';o.textContent='Sending…';
+    fetch(FS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({email:em,route:summary.slice(0,500),_subject:'euro-visa-route waitlist',_captcha:'false',_honey:$('#hp').value})})
+     .then(r=>r.json()).then(j=>{if(String(j.success)==='true'){o.className='ok';o.textContent="Thanks, you're on the list.";wf.reset()}else throw 0})
+     .catch(()=>{o.className='err';o.textContent='Sorry, that didn’t go through. Please try again in a minute.'});};
 }
