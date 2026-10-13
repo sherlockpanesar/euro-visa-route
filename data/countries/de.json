@@ -4,7 +4,7 @@
  "schengen": true,
  "official_portal": "https://videx.diplo.de/",
  "portal_status": "200",
- "centre": "TLScontact (verify current UK provider)",
+ "centre": "TLScontact: London, Manchester, Edinburgh",
  "form_type": "harmonised form (paper or centre online form, per country; needs verification)",
  "journey": [
   {
@@ -16,7 +16,7 @@
    "url": "https://uk.diplo.de/uk-en"
   },
   {
-   "step": "Book a TLScontact UK appointment and pay the service fee",
+   "step": "Book a TLScontact UK appointment, or join the waiting list (London/Manchester), and pay the service fee",
    "url": null
   },
   {
@@ -63,12 +63,12 @@
  },
  "fees": {
   "visa_eur": 90,
-  "service_gbp": 30
+  "service_gbp_estimate": "28–35"
  },
- "processing": "up to 15 days standard, up to 45 (EU Visa Code)",
- "uk_wait": "2–5 weeks",
+ "processing": "15 calendar days, up to 45",
+ "uk_wait": "Waiting list at TLS London and Manchester since 1 Jun 2026 (length needs verification)",
  "sources": [
-  "https://doineedavisa.uk/blog/schengen-visa-appointment-2026"
+  "https://findmyvisa.co.uk/schengen/germany-visa-from-uk"
  ],
  "checked": "2026-10-13",
  "verified": false,

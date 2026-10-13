@@ -2,12 +2,23 @@
  "meta": {
   "fx_eur_gbp": 0.86,
   "insurance_gbp": 15,
-  "note": "Edit by hand. nationalities[X].overrides[DEST] replaces destination defaults. verified=false shows 'needs verification'. Schengen-visa-exempt passports (e.g. UAE, Ukraine, Serbia, Colombia, Brazil) are intentionally excluded. The passport dropdown order follows the order of 'nationalities'."
+  "note": "Edit by hand. nationalities[X].overrides[DEST] replaces destination defaults. verified=false shows 'needs verification'. Schengen-visa-exempt passports (e.g. UAE, Ukraine, Serbia, Colombia, Brazil) are intentionally excluded. The passport dropdown order follows the order of 'nationalities'.",
+  "art25a": {
+   "text": "No Visa Code Art. 25a (readmission) measures in force for any of the 11 covered passports; standard fee and processing apply.",
+   "sources": [
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ%3AL_202401231",
+    "https://eur-lex.europa.eu/eli/dec_impl/2026/1131"
+   ],
+   "checked": "2026-10-13",
+   "verified": true
+  }
  },
  "schengen_fee": {
   "eur": 90,
-  "source": "https://findmyvisa.co.uk/schengen/fees-explained",
-  "checked": "2026-10-13"
+  "child_6_11_eur": 45,
+  "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02009R0810-20240611",
+  "checked": "2026-10-13",
+  "verified": true
  },
  "schengen": {
   "AT": {
@@ -140,32 +151,35 @@
   },
   "FR": {
    "name": "France",
-   "centre": "TLScontact",
-   "service_gbp": 40,
-   "wait": "3–6 weeks",
-   "wait_weeks": 4.5,
+   "centre": "TLScontact (London, Manchester, Edinburgh)",
+   "service_gbp": null,
+   "wait": "At least 20 working days",
+   "wait_weeks": 4,
    "refusal_IN": 15.7,
    "refusal_IN_source": "https://economictimes.indiatimes.com/nri/visit/one-in-six-indian-schengen-visa-applications-were-rejected-in-2025-these-countries-denied-the-most/articleshow/131403370.cms",
    "source": "https://france-visas.gouv.fr/en/royaume-uni",
    "checked": "2026-10-13",
    "verified": true,
-   "note": null,
+   "note": "UK appointment wait: no public data",
    "apply_url": "https://france-visas.gouv.fr/en/web/france-visas/",
    "apply_url_status": "bot-protected (403 to scripts; official domain)",
-   "apply_url_checked": "2026-10-13"
+   "apply_url_checked": "2026-10-13",
+   "visa_gbp": 77.99,
+   "service_eur": 40,
+   "fee_source": "https://visas-fr.tlscontact.com/en-us/country/gb/vac/gbMNC2fr/application-fees"
   },
   "DE": {
    "name": "Germany",
-   "centre": "TLScontact",
+   "centre": "TLScontact (London, Manchester, Edinburgh)",
    "service_gbp": 30,
-   "wait": "2–5 weeks",
-   "wait_weeks": 3.5,
+   "wait": "Waiting list since June 2026 (then 15–45 days)",
+   "wait_weeks": 4,
    "refusal_IN": 10.5,
    "refusal_IN_source": "https://economictimes.indiatimes.com/nri/visit/one-in-six-indian-schengen-visa-applications-were-rejected-in-2025-these-countries-denied-the-most/articleshow/131403370.cms",
-   "source": "https://doineedavisa.uk/blog/schengen-visa-appointment-2026",
+   "source": "https://findmyvisa.co.uk/schengen/germany-visa-from-uk",
    "checked": "2026-10-13",
-   "verified": true,
-   "note": null,
+   "verified": false,
+   "note": "Service fee ~£28–35 is an estimate; waiting-list length not verified",
    "apply_url": "https://videx.diplo.de/",
    "apply_url_status": "200",
    "apply_url_checked": "2026-10-13"
@@ -220,19 +234,20 @@
   },
   "IT": {
    "name": "Italy",
-   "centre": "TLScontact",
-   "service_gbp": 35,
-   "wait": "4–8 weeks",
-   "wait_weeks": 6,
+   "centre": "VFS Global (London; Manchester and Edinburgh satellites +2 working days)",
+   "service_gbp": 13.16,
+   "wait": "no data (+2 working days at satellites)",
+   "wait_weeks": null,
    "refusal_IN": 12.7,
    "refusal_IN_source": "https://economictimes.indiatimes.com/nri/visit/one-in-six-indian-schengen-visa-applications-were-rejected-in-2025-these-countries-denied-the-most/articleshow/131403370.cms",
-   "source": "https://doineedavisa.uk/blog/schengen-visa-appointment-2026",
+   "source": "https://visa.vfsglobal.com/one-pager/italy/uk/london/",
    "checked": "2026-10-13",
    "verified": true,
-   "note": null,
-   "apply_url": "https://vistoperitalia.esteri.it/",
-   "apply_url_status": "200",
-   "apply_url_checked": "2026-10-13"
+   "note": "Processing time and UK wait not verified",
+   "apply_url": "https://visa.vfsglobal.com/one-pager/italy/uk/london/",
+   "apply_url_status": "official VFS Italy UK page",
+   "apply_url_checked": "2026-10-13",
+   "visa_gbp": 77.2
   },
   "LV": {
    "name": "Latvia",
@@ -553,11 +568,11 @@
   },
   "IE": {
    "name": "Ireland",
-   "permit_rule": "Irish visa required; UK residence does NOT exempt. €60 single entry + VFS, 4–8 weeks.",
+   "permit_rule": "Irish visa required; a BRP or long-stay UK permission does NOT exempt you. The visa waiver only covers UK short-stay C visas.",
    "visa_required": true,
    "cost_gbp": 75,
    "wait": "4–8 weeks",
-   "source": "https://ilrtracker.com/guides/ilr-visa-free-countries",
+   "source": "https://www.irishimmigration.ie/coming-to-visit-ireland/short-stay-visa-waiver-programme/",
    "checked": "2026-10-13",
    "apply_url": "https://www.visas.inis.gov.ie/avats/OnlineHome.aspx",
    "apply_url_status": "200 (AVATS official online form)"
@@ -578,23 +593,49 @@
   "IN": {
    "name": "India",
    "schengen_visa": true,
-   "notes": [],
-   "overrides": {},
+   "notes": [
+    {
+     "text": "The India cascade (2-year multiple-entry visa after two visas used in 3 years) applies only to applications made in India. Applying from the UK, you get the standard rule (1 → 2 → 5-year visas after lawful use).",
+     "source": "https://home-affairs.ec.europa.eu/document/download/93d78385-3bd5-441f-bbf5-a233dceac4ae_en",
+     "checked": "2026-10-13",
+     "verified": true
+    }
+   ],
+   "overrides": {
+    "IE": {
+     "permit_rule": "Irish visa required for UK residents, but it is fee-free for this nationality (Short-Stay Visa Waiver country).",
+     "visa_required": true,
+     "cost_gbp": 0,
+     "wait": "4–8 weeks",
+     "source": "https://www.irishimmigration.ie/coming-to-visit-ireland/short-stay-visa-waiver-programme/",
+     "checked": "2026-10-13",
+     "verified": true,
+     "apply_url": "https://www.visas.inis.gov.ie/avats/OnlineHome.aspx"
+    }
+   },
    "refusal": {
     "rate": 15.0,
     "label": "Schengen applications filed in India, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": false
   },
   "PK": {
    "name": "Pakistan",
    "schengen_visa": true,
    "notes": [
     {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
+     "text": "You need an airport transit visa even to change planes in a Schengen airport (EU Annex IV list).",
+     "source": "https://www.legislation.gov.uk/eur/2009/810/annexes/adopted/data.xht?view=snippet&wrap=true",
+     "checked": "2026-10-13",
+     "verified": true
+    },
+    {
+     "text": "Whether a UK residence permit exempts you from the transit visa (Visa Code Art. 3(5)) is not yet confirmed. Check before booking connections.",
+     "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02009R0810-20240611",
+     "checked": "2026-10-13",
+     "verified": false
     }
    ],
    "overrides": {},
@@ -603,16 +644,24 @@
     "label": "Schengen applications filed in Pakistan, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": true
   },
   "NG": {
    "name": "Nigeria",
    "schengen_visa": true,
    "notes": [
     {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
+     "text": "You need an airport transit visa even to change planes in a Schengen airport (EU Annex IV list).",
+     "source": "https://www.legislation.gov.uk/eur/2009/810/annexes/adopted/data.xht?view=snippet&wrap=true",
+     "checked": "2026-10-13",
+     "verified": true
+    },
+    {
+     "text": "Whether a UK residence permit exempts you from the transit visa (Visa Code Art. 3(5)) is not yet confirmed. Check before booking connections.",
+     "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02009R0810-20240611",
+     "checked": "2026-10-13",
+     "verified": false
     }
    ],
    "overrides": {},
@@ -621,7 +670,8 @@
     "label": "Schengen applications filed in Nigeria, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": true
   },
   "CN": {
    "name": "China",
@@ -654,6 +704,16 @@
      "source": "https://visaunlocks.com/unlocks/uk-visa/",
      "checked": "2026-10-13",
      "verified": false
+    },
+    "IE": {
+     "permit_rule": "Irish visa required for UK residents, but it is fee-free for this nationality (Short-Stay Visa Waiver country).",
+     "visa_required": true,
+     "cost_gbp": 0,
+     "wait": "4–8 weeks",
+     "source": "https://www.irishimmigration.ie/coming-to-visit-ireland/short-stay-visa-waiver-programme/",
+     "checked": "2026-10-13",
+     "verified": true,
+     "apply_url": "https://www.visas.inis.gov.ie/avats/OnlineHome.aspx"
     }
    },
    "refusal": {
@@ -661,16 +721,24 @@
     "label": "Schengen applications filed in China, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": false
   },
   "BD": {
    "name": "Bangladesh",
    "schengen_visa": true,
    "notes": [
     {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
+     "text": "You need an airport transit visa even to change planes in a Schengen airport (EU Annex IV list).",
+     "source": "https://www.legislation.gov.uk/eur/2009/810/annexes/adopted/data.xht?view=snippet&wrap=true",
+     "checked": "2026-10-13",
+     "verified": true
+    },
+    {
+     "text": "Whether a UK residence permit exempts you from the transit visa (Visa Code Art. 3(5)) is not yet confirmed. Check before booking connections.",
+     "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02009R0810-20240611",
+     "checked": "2026-10-13",
+     "verified": false
     }
    ],
    "overrides": {},
@@ -679,19 +747,32 @@
     "label": "Schengen applications filed in Bangladesh, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": true
   },
   "PH": {
    "name": "Philippines",
    "schengen_visa": true,
    "notes": [],
-   "overrides": {},
+   "overrides": {
+    "IE": {
+     "permit_rule": "Irish visa required for UK residents, but it is fee-free for this nationality (Short-Stay Visa Waiver country).",
+     "visa_required": true,
+     "cost_gbp": 0,
+     "wait": "4–8 weeks",
+     "source": "https://www.irishimmigration.ie/coming-to-visit-ireland/short-stay-visa-waiver-programme/",
+     "checked": "2026-10-13",
+     "verified": true,
+     "apply_url": "https://www.visas.inis.gov.ie/avats/OnlineHome.aspx"
+    }
+   },
    "refusal": {
     "rate": 6.1,
     "label": "Schengen applications filed in Philippines, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": false
   },
   "ZA": {
    "name": "South Africa",
@@ -722,16 +803,30 @@
     "label": "Schengen applications filed in South Africa, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": false
   },
   "GH": {
    "name": "Ghana",
    "schengen_visa": true,
    "notes": [
     {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
+     "text": "You need an airport transit visa even to change planes in a Schengen airport (EU Annex IV list).",
+     "source": "https://www.legislation.gov.uk/eur/2009/810/annexes/adopted/data.xht?view=snippet&wrap=true",
+     "checked": "2026-10-13",
+     "verified": true
+    },
+    {
+     "text": "Whether a UK residence permit exempts you from the transit visa (Visa Code Art. 3(5)) is not yet confirmed. Check before booking connections.",
+     "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02009R0810-20240611",
+     "checked": "2026-10-13",
+     "verified": false
+    },
+    {
+     "text": "The Ghana cascade (3-year multiple-entry visa after a used 2-year one) applies only to applications made in Ghana. Applying from the UK, you get the standard rule (1 → 2 → 5-year visas after lawful use).",
+     "source": "https://www.scribd.com/document/789726055/Commission-Implementing-Decision-C-2024-5340-en",
+     "checked": "2026-10-13",
+     "verified": true
     }
    ],
    "overrides": {},
@@ -740,12 +835,20 @@
     "label": "Schengen applications filed in Ghana, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": true
   },
   "TR": {
    "name": "Türkiye",
    "schengen_visa": true,
-   "notes": [],
+   "notes": [
+    {
+     "text": "The Türkiye cascade (6-month, then 1-, 3- and 5-year multiple-entry visas) applies only to applications made in Türkiye. Applying from the UK, you get the standard rule (1 → 2 → 5-year visas after lawful use).",
+     "source": "https://vizeyoneurope.com/en/blog/what-is-cascade-rule/",
+     "checked": "2026-10-13",
+     "verified": true
+    }
+   ],
    "overrides": {
     "CY": {
      "permit_rule": "Turkish citizens must follow the regular Cyprus visa procedure; the Schengen-visa exemption does not apply.",
@@ -806,6 +909,16 @@
      "source": "https://www.geoconsul.gov.ge/",
      "checked": "2026-10-13",
      "verified": false
+    },
+    "IE": {
+     "permit_rule": "Irish visa required for UK residents, but it is fee-free for this nationality (Short-Stay Visa Waiver country).",
+     "visa_required": true,
+     "cost_gbp": 0,
+     "wait": "4–8 weeks",
+     "source": "https://www.irishimmigration.ie/coming-to-visit-ireland/short-stay-visa-waiver-programme/",
+     "checked": "2026-10-13",
+     "verified": true,
+     "apply_url": "https://www.visas.inis.gov.ie/avats/OnlineHome.aspx"
     }
    },
    "refusal": {
@@ -813,16 +926,24 @@
     "label": "Schengen applications filed in Türkiye, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": false
   },
   "LK": {
    "name": "Sri Lanka",
    "schengen_visa": true,
    "notes": [
     {
-     "text": "You need an airport transit visa even to change planes in a Schengen airport. Exemptions exist (e.g. some UK residence permits); check them.",
-     "source": "https://home-affairs.ec.europa.eu/document/download/b4c96db2-f9ff-4fba-8106-89a52c9c4121_en?filename=annex_7a_atv_common_list_en.pdf",
-     "checked": "2026-10-13"
+     "text": "You need an airport transit visa even to change planes in a Schengen airport (EU Annex IV list).",
+     "source": "https://www.legislation.gov.uk/eur/2009/810/annexes/adopted/data.xht?view=snippet&wrap=true",
+     "checked": "2026-10-13",
+     "verified": true
+    },
+    {
+     "text": "Whether a UK residence permit exempts you from the transit visa (Visa Code Art. 3(5)) is not yet confirmed. Check before booking connections.",
+     "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A02009R0810-20240611",
+     "checked": "2026-10-13",
+     "verified": false
     }
    ],
    "overrides": {},
@@ -831,7 +952,8 @@
     "label": "Schengen applications filed in Sri Lanka, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": true
   },
   "TH": {
    "name": "Thailand",
@@ -855,6 +977,16 @@
      "source": "https://www.geoconsul.gov.ge/",
      "checked": "2026-10-13",
      "verified": false
+    },
+    "IE": {
+     "permit_rule": "Irish visa required for UK residents, but it is fee-free for this nationality (Short-Stay Visa Waiver country).",
+     "visa_required": true,
+     "cost_gbp": 0,
+     "wait": "4–8 weeks",
+     "source": "https://www.irishimmigration.ie/coming-to-visit-ireland/short-stay-visa-waiver-programme/",
+     "checked": "2026-10-13",
+     "verified": true,
+     "apply_url": "https://www.visas.inis.gov.ie/avats/OnlineHome.aspx"
     }
    },
    "refusal": {
@@ -862,7 +994,8 @@
     "label": "Schengen applications filed in Thailand, 2024 (by country of application, not nationality)",
     "source": "https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/statistics-short-stay-visas_en",
     "checked": "2026-10-13"
-   }
+   },
+   "atv": false
   }
  },
  "permit_statuses": [

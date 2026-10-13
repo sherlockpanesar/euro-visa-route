@@ -20,7 +20,8 @@ function badge(p,s){const n=R.nationalities[p];
   if(p==='IN'&&s&&s.refusal_IN!=null)x+=`<span class="badge">Indian applicants to ${s.name}, 2025: ${s.refusal_IN}%</span>`+src({source:s.refusal_IN_source,checked:s.checked});
   if(x)return x;
   return `<span class="badge">Refusal: no data</span><small class="src">The EU publishes no nationality-level data for this passport.</small>`;}
-const cost=s=>R.schengen_fee.eur*R.meta.fx_eur_gbp+s.service_gbp+R.meta.insurance_gbp;
+const vfee=s=>s.visa_gbp??R.schengen_fee.eur*R.meta.fx_eur_gbp,sfee=s=>s.service_gbp??(s.service_eur||0)*R.meta.fx_eur_gbp;
+const cost=s=>vfee(s)+sfee(s)+R.meta.insurance_gbp;
 const ruleFor=(p,c)=>{const o=R.nationalities[p].overrides?.[c];return o?{...R.non_schengen[c],...o}:R.non_schengen[c]};
 function nonEval(p,c,permit,days){const r=ruleFor(p,c);
   if(r.visa_required)return {r,ok:false,visa:true};
@@ -33,9 +34,9 @@ function run(){
   const N=R.nationalities[p],days=Math.round((to-from)/864e5)+1,lead=(from-today)/864e5/7,permit=R.permit_statuses.includes(st);
   const sch=sel.filter(c=>R.schengen[c]),non=sel.filter(c=>R.non_schengen[c]);let prepIso=null;let h='',warns=[],alts=[],detail='',route='';
   if(sch.length){const c=sch[0],s=R.schengen[c],t=cost(s);
-    h=`Apply to ${s.name}. About ${gbp(t)}. ${s.wait==='no data'?'Wait: no data':s.wait}.`;route=h;
+    h=`Apply to ${s.name}. About ${gbp(t)}. ${s.wait.startsWith('no data')?'Wait: no data':s.wait}.`;route=h;
     detail=`<p>You need a Schengen visa (type C) for ${sch.map(x=>R.schengen[x].name).join(' and ')}. Apply to <b>${s.name}</b> via ${s.centre}${sch.length>1?', your main destination (most nights; if nights are equal, the country you enter first).':'.'}</p>
-    <p class="k">Cost: €90 visa fee (~${gbp(90*R.meta.fx_eur_gbp)} at ~${R.meta.fx_eur_gbp} €/£) + ${s.centre} fee ~${gbp(s.service_gbp)} + insurance ~${gbp(R.meta.insurance_gbp)}${s.note?' · '+s.note:''}</p>${badge(p,s)}${src(R.schengen_fee)}${src(s)}
+    <p class="k">Cost: €90 visa fee (${s.visa_gbp?'£'+s.visa_gbp.toFixed(2):'~'+gbp(vfee(s))+' at ~'+R.meta.fx_eur_gbp+' €/£'}) + centre fee ${s.service_gbp&&s.verified?'£'+s.service_gbp.toFixed(2):s.service_eur?'€'+s.service_eur+' (~'+gbp(sfee(s))+')':'~'+gbp(sfee(s))} + insurance ~${gbp(R.meta.insurance_gbp)}${s.note?' · '+s.note:''}</p>${badge(p,s)}${src(R.schengen_fee)}${src(s)}
     ${PREP.includes(c)?'<div id="jr"></div><button type="button" id="prepbtn">Prepare my application</button>':btn(s.apply_url,'Start application')}`;if(PREP.includes(c))prepIso=c;
     if(N.restricted_dest?.includes(c))warns.push(`${s.name} restricts visas for ${N.name} citizens. Check the official page before applying.`);
     if(days>90)warns.push('Trips over 90 days cannot use a short-stay visa.');

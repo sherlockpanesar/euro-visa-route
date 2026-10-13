@@ -4,7 +4,7 @@
  "schengen": true,
  "official_portal": "https://france-visas.gouv.fr/en/web/france-visas/",
  "portal_status": "bot-protected (403 to scripts; official .gouv.fr)",
- "centre": "TLScontact",
+ "centre": "TLScontact: London, Manchester, Edinburgh (any UK resident may use any)",
  "form_type": "online (France-Visas)",
  "journey": [
   {
@@ -63,14 +63,18 @@
  },
  "fees": {
   "visa_eur": 90,
-  "service_gbp": 40
+  "visa_gbp": 77.99,
+  "child_6_11_gbp": 38.99,
+  "service_eur": 40,
+  "optional": "Kennington pop-up +£150"
  },
- "processing": "up to 15 days standard, up to 45 (EU Visa Code)",
- "uk_wait": "3–6 weeks",
+ "processing": "Allow at least 20 working days; apply up to 180 days ahead",
+ "uk_wait": "no public data (needs verification)",
  "sources": [
-  "https://france-visas.gouv.fr/en/royaume-uni"
+  "https://france-visas.gouv.fr/en/royaume-uni",
+  "https://visas-fr.tlscontact.com/en-us/country/gb/vac/gbMNC2fr/application-fees"
  ],
  "checked": "2026-10-13",
- "verified": false,
+ "verified": true,
  "portal_label": "France-Visas (official)"
 }

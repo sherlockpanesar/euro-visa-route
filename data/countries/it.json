@@ -4,7 +4,7 @@
  "schengen": true,
  "official_portal": "https://vistoperitalia.esteri.it/",
  "portal_status": "200",
- "centre": "Visa centre (verify current UK provider)",
+ "centre": "VFS Global: London, plus Manchester and Edinburgh satellites (+2 working days)",
  "form_type": "harmonised form (paper or centre online form, per country; needs verification)",
  "journey": [
   {
@@ -20,8 +20,8 @@
    "url": null
   },
   {
-   "step": "Book an appointment with the Italian visa centre in the UK and pay the service fee",
-   "url": null
+   "step": "Book a VFS Global Italy UK appointment (London, or the Manchester/Edinburgh satellites) and pay the £13.16 service fee",
+   "url": "https://visa.vfsglobal.com/one-pager/italy/uk/london/"
   },
   {
    "step": "Attend: documents, biometrics, €90 visa fee",
@@ -67,14 +67,16 @@
  },
  "fees": {
   "visa_eur": 90,
-  "service_gbp": 35
+  "visa_gbp": 77.2,
+  "service_gbp": 13.16
  },
- "processing": "up to 15 days standard, up to 45 (EU Visa Code)",
- "uk_wait": "4–8 weeks",
+ "processing": "base time needs verification; +2 working days at satellites",
+ "uk_wait": "no data (needs verification)",
  "sources": [
-  "https://doineedavisa.uk/blog/schengen-visa-appointment-2026"
+  "https://visa.vfsglobal.com/one-pager/italy/uk/london/"
  ],
  "checked": "2026-10-13",
- "verified": false,
- "portal_label": "Il Visto per l'Italia (official MFA portal)"
+ "verified": true,
+ "portal_label": "Il Visto per l'Italia (official MFA portal)",
+ "centre_url": "https://visa.vfsglobal.com/one-pager/italy/uk/london/"
 }
